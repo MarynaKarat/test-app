@@ -4,7 +4,7 @@
  */
 
 import * as colors from './colors.js';
-import { select, pressEnter } from './input.js';
+import { select } from './input.js';
 
 /**
  * Shuffles an array using Fisher-Yates algorithm
@@ -77,7 +77,7 @@ export class Quiz {
     const progressBar = this.renderProgressBar();
     console.log(`\n${colors.dim(progressBar)}`);
     console.log(colors.dim(`Question ${this.currentIndex + 1} of ${this.totalQuestions}`));
-    
+
     // Ask the question
     const { index } = await select(
       rl,
@@ -86,7 +86,7 @@ export class Quiz {
     );
 
     const isCorrect = index === q.answer;
-    
+
     // Record the answer
     this.answers.push({
       question: q.question,
@@ -133,10 +133,10 @@ export class Quiz {
     console.log('═'.repeat(50));
 
     const percentage = Math.round((this.score / this.totalQuestions) * 100);
-    
+
     console.log(`\n  Category: ${colors.cyan(this.categoryName)}`);
     console.log(`  Score: ${colors.bold(`${this.score}/${this.totalQuestions}`)} (${percentage}%)`);
-    
+
     // Performance message
     let message;
     let emoji;
@@ -156,10 +156,10 @@ export class Quiz {
       message = 'Keep practicing! You\'ll get better!';
       emoji = '💪';
     }
-    
+
     console.log(`\n  ${emoji} ${colors.yellow(message)}`);
     console.log('\n' + '═'.repeat(50));
-    
+
     // Show incorrect answers for review
     const incorrect = this.answers.filter(a => !a.isCorrect);
     if (incorrect.length > 0) {
