@@ -64,15 +64,15 @@ Your choice (enter number): 2
 
 ## Project Structure
 
-> The code references `./src/*` and `data/questions.json`, but the current repository has all `.js` files and `questions.json` at the root. See **Troubleshooting**.
-
 ```text
 .
 ├── index.js            # CLI entry point (loads questions, runs main loop)
-├── quiz.js             # Quiz class (shuffling, asking, scoring, results)
-├── input.js            # Readline-based prompts (select/confirm/pressEnter)
-├── colors.js           # ANSI color helpers (no dependencies)
-├── questions.json      # Question bank (categories + questions)
+├── src/
+│   ├── quiz.js         # Quiz class (shuffling, asking, scoring, results)
+│   ├── input.js        # Readline-based prompts (select/confirm/pressEnter)
+│   └── colors.js       # ANSI color helpers (no dependencies)
+├── data/
+│   └── questions.json  # Question bank (categories + questions)
 └── package.json        # Project metadata and npm scripts
 ```
 
@@ -115,36 +115,10 @@ Questions are stored as JSON with the following shape:
 
 ## Troubleshooting
 
-### Module path mismatch (`./src/*`) / missing `data/questions.json`
+If you see missing-module or missing-file errors, ensure you are on the latest `main` branch. This repository expects:
 
-`index.js` imports:
-
-- `./src/input.js`
-- `./src/quiz.js`
-- `./src/colors.js`
-
-and loads data from:
-
-- `data/questions.json`
-
-…but in the current repository tree those files live at the root:
-
-- `input.js`, `quiz.js`, `colors.js`, `questions.json`
-
-**Fix option A (recommended): align the file structure**
-
-```bash
-mkdir -p src data
-mv input.js quiz.js colors.js src/
-mv questions.json data/
-```
-
-**Fix option B: adjust imports/paths in `index.js`**
-
-- Change `./src/input.js` → `./input.js`
-- Change `./src/quiz.js` → `./quiz.js`
-- Change `./src/colors.js` → `./colors.js`
-- Change `join(__dirname, 'data', 'questions.json')` → `join(__dirname, 'questions.json')`
+- source files under `src/`
+- questions under `data/questions.json`
 
 ## License
 
