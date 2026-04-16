@@ -6,11 +6,15 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "node --test"
+    "test": "node --test",
+    "test:e2e": "playwright test"
   },
   "keywords": ["cli", "quiz", "game", "educational"],
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0"
   }
 }
