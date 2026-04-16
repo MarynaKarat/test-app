@@ -10,7 +10,8 @@ test('EPAM: Services -> Explore Our Client Work shows Client Work page', async (
   }
 
   const header = page.getByRole('banner');
-  await header.getByRole('link', { name: 'Services' }).click();
+  // EPAM header contains multiple "Services" links (desktop + hamburger); pick desktop one.
+  await header.getByRole('link', { name: 'Services' }).nth(1).click();
 
   const main = page.getByRole('main');
   await main.getByRole('link', { name: 'Explore Our Client Work' }).click();
