@@ -9,8 +9,11 @@ test('EPAM: Services -> Explore Our Client Work shows Client Work page', async (
     await acceptAll.click();
   }
 
-  await page.getByRole('link', { name: 'Services' }).click();
-  await page.getByRole('link', { name: 'Explore Our Client Work' }).click();
+  const header = page.getByRole('banner');
+  await header.getByRole('link', { name: 'Services' }).click();
 
-  await expect(page.getByText('Client Work', { exact: true })).toBeVisible();
+  const main = page.getByRole('main');
+  await main.getByRole('link', { name: 'Explore Our Client Work' }).click();
+
+  await expect(page.getByRole('heading', { name: 'Client Work' })).toBeVisible();
 });
